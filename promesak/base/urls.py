@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from promesak.base import views as baseviews
+from django.views.generic import RedirectView
+
 urlpatterns = [
+    url(r'^party/$',
+        RedirectView.as_view(pattern_name='index')),
     url(r'^party/(?P<slug>[-\w]+)?',
         baseviews.party_view, name='party_view'),
+    url(r'^promise/$',
+        RedirectView.as_view(pattern_name='index')),
     url(r'^promise/(?P<slug>[-\w]+)?',
         baseviews.promise_view, name='promise_view'),
 ]

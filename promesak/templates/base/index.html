@@ -3,57 +3,63 @@
 {% block title %}{% trans "Home"%}{% endblock %}
 {% block content %}
 <div class="main" id="index">
-<h1>Hauteskunde aginduak Eibarren</h1>
+    <h1>Hauteskunde aginduak Eibarren</h1>
 
-<div id="front-intro" class="center-block well visible-md-block visible-lg-block">
-    <p>
-        Webgune honetan Eibarko Udalerako hautagaiek egindako hauteskunde-aginduak bilduko ditugu
-    </p>
-</div>
-
-    <div class="table-responsive">
-        <table class="table table-stripped">
-            <thead>
-                <th>
-                    #
-                </th>
-                <th>
-                    Alderdia
-                </th>
-                <th>
-                    Agindua
-                </th>
-                <th>
-                    Agindua beteta?
-                </th>
-            </thead>
-            <tbody>
-                {% for promise in promises %}
-                <tr>
-                    <td>
-                        {{forloop.counter}}
-                    </td>
-                    <td>
-                        <a href="{% url 'party_view' promise.party.slug %}">
-                            {{promise.party.name}}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'promise_view' promise.slug %}">
-                            {{promise.title}}
-                        </a>
-                    </td>
-                    <td>
-                        {% if promise.fulfilled %}
-                            <span class="glyphicon glyphicon-ok" />
-                        {% else %}
-                            <span class="glyphicon glyphicon-remove" />
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div id="front-intro" class="center-block well visible-md-block visible-lg-block">
+        <p>
+            Webgune honetan Eibarko Udalerako hautagaiek egindako hauteskunde-aginduak bilduko ditugu
+        </p>
     </div>
 
-{% endblock %}
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <thead>
+                        <th>#</th>
+                        <th>Agindua</th>
+                        <th>Agindua beteta?</th>
+                        <th>Alderdia</th>
+                    </thead>
+                    <tbody>
+                        {% for promise in promises %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>
+                                <a href="{% url 'promise_view' promise.slug %}">{{promise.title}}</a>
+                            </td>
+                            <td>
+                                {% if promise.fulfilled %}
+                                <span class="glyphicon glyphicon-ok" />
+                                {% else %}
+                                <span class="glyphicon glyphicon-remove" />
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'party_view' promise.party.slug %}">{{promise.party.name}}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div id="candidates">
+                <h2>Hautagaitzak</h2>
+                {% for party in parties %}
+                    <div class="party" id="{{party.slug}}">
+                        <img src="{{party.logo.url}}" width="100" height="100" class="pull-right"/>
+                        <h3><a href="{% url 'party_view' party.slug %}">{{party.name}}</a></h3>
+                        <strong>Alkategaia:</strong> {{party.mayor}}<br/>
+                        <strong>Webgunea:</strong> <a href="{{party.web}}">{{party.web}}</a>
+                    </div>
+                    <div class="clearfix"></div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+    {% endblock %}

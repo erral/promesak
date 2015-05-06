@@ -14,6 +14,7 @@ class Party(models.Model):
         upload_to='uploads', blank=True, null=True)
     program_file = models.FileField(_('Program file'),
         upload_to='uploads', blank=True, null=True)
+    mayor = models.CharField(_('Mayor'), max_length=255, default=u'')
 
     def save(self, *args, **kwargs):
         if not self.pk:

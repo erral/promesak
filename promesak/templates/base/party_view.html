@@ -37,9 +37,9 @@
     </div>
     <div class="col-md-4">
         <h2>{{party.name}}</h2>
-        <img src="{{party.logo.url}}"/>
-        <h3>{% trans "Candidates" %}</h3>
-        {{party.candidates}}
+        <img src="{{party.logo.url}}" width="300" height="150"/>
+        <h3>Hautagai-zerrenda</h3>
+        {{party.candidates|linebreaks}}
         <hr />
         {{party.text|safe}}
     </div>

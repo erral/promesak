@@ -9,6 +9,7 @@ from promesak.base.models import Party
 # Create your views here.
 def index(request):
     h = {}
+    h['parties'] = Party.objects.all().order_by('name')
     h['promises'] = Promise.objects.all().order_by('-date_promised')
     return render(
         request,

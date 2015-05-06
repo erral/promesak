@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{flatpage.title}}{% endblock %}
+{% block content %}
+<h1>{{flatpage.title}}</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div id="main">
+            {{flatpage.content}}
+        </div>
+    </div>
+</div>
+{% endblock %}

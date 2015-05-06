@@ -6,10 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %}Aginduak{% endblock %}</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" />
 
         {% compress css %}
         <link href="{{STATIC_URL}}css/global.css" rel="stylesheet" type="text/css" />
@@ -24,7 +21,7 @@
         {% block extrajs %}{% endblock %}
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div id="menu" class="row">
                 <!--<div class="col-md-12">-->
                     <nav class="navbar navbar-default navbar-top" role="navigation">
