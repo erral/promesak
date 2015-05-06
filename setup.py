@@ -22,6 +22,7 @@ setup(name='promesak',
           'django',
           'gunicorn',
           'django_compressor',
+          'django-tinymce',
       ],
       entry_points="""
       # -*- Entry points: -*-

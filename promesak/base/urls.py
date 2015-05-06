@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from promesak.base import views as baseviews
 urlpatterns = [
-
+    url(r'^party/(?P<slug>[-\w]+)?',
+        baseviews.party_view, name='party_view'),
+    url(r'^promise/(?P<slug>[-\w]+)?',
+        baseviews.promise_view, name='promise_view'),
 ]

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Home"%}{% endblock %}
+{% block content %}
+<div class="main" id="index">
+<h1>{{promise.title}}</h1>
+
+{{promise.promised_date}}
+
+{{promise.text|safe}}
+
+{{promise.source_promise_url}}
+
+<div id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'aginduakeibarorg';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+<div id="fulfillment">
+    <h2>{% trans "Fulfillment" %}</h2>
+{% if promise.fulfilled %}
+    {{promise.fulfillment_date}}
+    <br />
+    {{promise.fulfillment_proof}}
+{% else %}
+    <span class="glyphicon glyphicon-remove" />
+{% endif %}
+</div>
+
+{% endblock %}
