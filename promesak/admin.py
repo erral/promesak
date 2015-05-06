@@ -9,7 +9,7 @@ class PageForm(FlatpageForm):
 
     class Meta:
         model = FlatPage
-	exclude = []
+        exclude = []
         widgets = {
             'content': TinyMCE(attrs={'cols': 100, 'rows': 15}),
         }
