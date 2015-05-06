@@ -6,8 +6,10 @@ from django.conf import settings
 
 class PageForm(FlatpageForm):
 
+
     class Meta:
         model = FlatPage
+	exclude = []
         widgets = {
             'content': TinyMCE(attrs={'cols': 100, 'rows': 15}),
         }
