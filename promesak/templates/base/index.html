@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Home"%}{% endblock %}
+{% block content %}
+<div class="main" id="index">
+<h1>Hauteskunde aginduak Eibarren</h1>
+
+<div id="front-intro" class="center-block well visible-md-block visible-lg-block">
+    <p>
+        Webgune honetan Eibarko Udalerako hautagaiek egindako hauteskunde-aginduak bilduko ditugu
+    </p>
+</div>
+
+    <div class="table-responsive">
+        <table class="table table-stripped">
+            <thead>
+                <th>
+                    #
+                </th>
+                <th>
+                    Alderdia
+                </th>
+                <th>
+                    Agindua
+                </th>
+                <th>
+                    Agindua beteta?
+                </th>
+            </thead>
+            <tbody>
+                {% for promise in promises %}
+                <tr>
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+
+                    <td>
+                        {{promise.party.name}}
+                    </td>
+                    <td>
+                        {{promise.title}}
+                    </td>
+                    <td>
+                        {% if promise.fulfilled %}
+                            <span class="glyphicon glyphicon-ok" />
+                        {% else %}
+                            <span class="glyphicon glyphicon-remove" />
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

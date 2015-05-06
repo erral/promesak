@@ -1,0 +1,97 @@
+{% load i18n flatpages compress %}<!DOCTYPE html>
+<html lang="{{LANGUAGE_CODE}}">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Aginduak{% endblock %}</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+        {% compress css %}
+        <link href="{{STATIC_URL}}css/global.css" rel="stylesheet" type="text/css" />
+        {% endcompress %}
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        {% block extracss %}{% endblock %}
+        {% block extrajs %}{% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div id="menu" class="row">
+                <!--<div class="col-md-12">-->
+                    <nav class="navbar navbar-default navbar-top" role="navigation">
+                      <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                            <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand" href="{% url 'index' %}">
+                            Hauteskunde aginduak
+                          </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="main-navbar">
+                          <ul class="nav navbar-nav first">
+                            <li class="active"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Information"%} <b class="caret"></b></a>
+                                {% get_flatpages as flatpages %}
+                                <ul class="dropdown-menu">
+                                    {% for page in flatpages %}
+                                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                <!--</div /.12 -->
+            </div><!-- /.menu -->
+            <div class="row" id="content">
+              <div class="row" id="breadcrumb">
+                  <div class="col-md-12">
+                      {% block breadcrumb %}
+                      {% endblock %}
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+              </div>
+            </div>
+            <div id="footer" class="row">
+              <div id="footercontent" class="container-fluid">
+                <div class="col-md-12">
+                    <a class="go-to-top" href="#top">{%trans "go to top"%} <span class="glyphicon glyphicon-chevron-up"></span></a>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        {% block extrajsfooter %}
+        {% endblock %}
+    </body>
+</html>

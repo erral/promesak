@@ -4,7 +4,8 @@ from django.template.defaultfilters import slugify
 
 
 class Party(models.Model):
-    slug = models.SlugField('Slug', max_length=255, unique=True, blank=True, null=True)
+    slug = models.SlugField(
+        'Slug', max_length=255, unique=True, blank=True, null=True)
     name = models.CharField(_('Title'), max_length=255)
 
     def save(self, *args, **kwargs):
@@ -20,13 +21,21 @@ class Party(models.Model):
 
 
 class Promise(models.Model):
-    slug = models.SlugField('Slug', max_length=255, unique=True, blank=True, null=True)
+    slug = models.SlugField(
+        'Slug', max_length=255, unique=True, blank=True, null=True)
     title = models.CharField(_('Title'), max_length=255)
     text = models.TextField(_('Text'), default=u'')
-    date_promised = models.DateField('Date')
+    date_promised = models.DateField(_('Promise date'), blank=True, null=True)
     source_promise_url = models.CharField(_('Source URL'), max_length=255)
-    source_promise_text = models.TextField(_('Extra promise text'), default=u'')
+    source_promise_text = models.TextField(
+        _('Extra promise text'), default=u'')
     party = models.ForeignKey(Party, blank=True, null=True)
+
+    fulfilled = models.BooleanField(
+        _('Fulfilled?'), default=False)
+    fulfillment_proof = models.TextField(
+        _('Fulfillment proof'), default=u'', blank=True, null=True)
+    date_fulfilled = models.DateField('Date fulfilled', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:

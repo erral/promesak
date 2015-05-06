@@ -21,6 +21,7 @@ setup(name='promesak',
           # -*- Extra requirements: -*-
           'django',
           'gunicorn',
+          'django_compressor',
       ],
       entry_points="""
       # -*- Entry points: -*-
