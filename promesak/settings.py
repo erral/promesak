@@ -12,14 +12,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+from django.conf import global_settings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ['aginduak.eibar.org', '127.0.0.1']
+ALLOWED_HOSTS = ['.eibar.org', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -121,6 +121,14 @@ MEDIA_URL = '/media/'
 
 DEBUG = False
 
+STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + (
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.yui.YUICSSFilter',
+)
 
 try:
     from server_settings import *
