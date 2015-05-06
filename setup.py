@@ -6,8 +6,7 @@ version = '0.1'
 setup(name='promesak',
       version=version,
       description="Promesak, promesak, promesak",
-      long_description="""\
-""",
+      long_description=open('README.rst', 'r').read(),
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='',
       author='Mikel Larreategi',
