@@ -19,6 +19,7 @@ setup(name='promesak',
       zip_safe=False,
       install_requires=[
           # -*- Extra requirements: -*-
+          'Pillow',
           'django',
           'gunicorn',
           'django_compressor',

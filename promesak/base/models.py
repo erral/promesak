@@ -7,6 +7,13 @@ class Party(models.Model):
     slug = models.SlugField(
         'Slug', max_length=255, unique=True, blank=True, null=True)
     name = models.CharField(_('Title'), max_length=255)
+    text = models.TextField(_('Text'), default=u'')
+    candidates = models.TextField(_('Candidates'), default=u'')
+    web = models.CharField(_('Web'), max_length=255, default=u'',)
+    logo = models.ImageField(_('Logo'),
+        upload_to='uploads', blank=True, null=True)
+    program_file = models.FileField(_('Program file'),
+        upload_to='uploads', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:

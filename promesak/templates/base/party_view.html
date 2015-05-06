@@ -2,45 +2,46 @@
 {% load i18n %}
 {% block title %}{% trans "Home"%}{% endblock %}
 {% block content %}
-<div class="main" id="index">
-<h1>{{party.name}}</h1>
+<div class="row">
+    <div class="col-md-8">
+        <div class="main" id="index">
+            <h1>{{party.name}}</h1>
 
-
-    <div class="table-responsive">
-        <table class="table table-stripped">
-            <thead>
-                <th>
-                    #
-                </th>
-                <th>
-                    Agindua
-                </th>
-                <th>
-                    Agindua beteta?
-                </th>
-            </thead>
-            <tbody>
-                {% for promise in promises %}
-                <tr>
-                    <td>
-                        {{forloop.counter}}
-                    </td>
-                    <td>
-                        <a href="{% url 'promise_view' promise.slug %}">
-                            {{promise.title}}
-                        </a>
-                    </td>
-                    <td>
-                        {% if promise.fulfilled %}
-                            <span class="glyphicon glyphicon-ok" />
-                        {% else %}
-                            <span class="glyphicon glyphicon-remove" />
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <thead>
+                        <th>#</th>
+                        <th>Agindua</th>
+                        <th>Agindua beteta?</th>
+                    </thead>
+                    <tbody>
+                        {% for promise in promises %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>
+                                <a href="{% url 'promise_view' promise.slug %}">{{promise.title}}</a>
+                            </td>
+                            <td>
+                                {% if promise.fulfilled %}
+                                <span class="glyphicon glyphicon-ok" />
+                                {% else %}
+                                <span class="glyphicon glyphicon-remove" />
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
+    <div class="col-md-4">
+        <h2>{{party.name}}</h2>
+        <img src="{{party.logo.url}}"/>
+        <h3>{% trans "Candidates" %}</h3>
+        {{party.candidates}}
+        <hr />
+        {{party.text|safe}}
+    </div>
+</div>
 {% endblock %}
