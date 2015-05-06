@@ -36,7 +36,7 @@ class Promise(models.Model):
     date_promised = models.DateField(_('Promise date'), blank=True, null=True)
     source_promise_url = models.CharField(_('Source URL'), max_length=255)
     source_promise_text = models.TextField(
-        _('Extra promise text'), default=u'')
+        _('Extra promise text'), default=u'', blank=True, null=True)
     party = models.ForeignKey(Party, blank=True, null=True)
 
     fulfilled = models.BooleanField(
