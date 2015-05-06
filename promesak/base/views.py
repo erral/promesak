@@ -1,16 +1,14 @@
 from django.shortcuts import render
-from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
 from promesak.base.models import Promise
 from promesak.base.models import Party
 
 
-# Create your views here.
 def index(request):
     h = {}
-    h['parties'] = Party.objects.all().order_by('name')
+    h['parties'] = Party.objects.all().order_by('?')
     h['promises'] = Promise.objects.all().order_by('-date_promised')
+
     return render(
         request,
         'base/index.html',

@@ -7,6 +7,10 @@
         <div class="main" id="index">
             <h1>{{party.name}}</h1>
 
+            <div id="party-manifesto">
+                {{party.text|safe}}
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <thead>
@@ -36,12 +40,18 @@
         </div>
     </div>
     <div class="col-md-4">
-        <h2>{{party.name}}</h2>
-        <img src="{{party.logo.url}}" width="300" height="150"/>
+        <h2>
+            {{party.name}}
+        </h2>
+        <p>
+            <a href="{% url 'party_view' party.slug%}">
+                <img src="{{party.logo.url}}" width="300" height="150"/>
+            </a>
+        </p>
         <h3>Hautagai-zerrenda</h3>
         {{party.candidates|linebreaks}}
-        <hr />
-        {{party.text|safe}}
+
+
     </div>
 </div>
 {% endblock %}

@@ -3,14 +3,32 @@
 {% block title %}{% trans "Home"%}{% endblock %}
 {% block content %}
 <div class="main" id="index">
-    <h1>{{promise.title}}</h1>
-    {{promise.promised_date}}
-
-{{promise.text|safe}}
-
-{{promise.source_promise_url}}
     <div class="row">
         <div class="col-md-8">
+            <div id="promise-contents">
+                <h1>{{promise.title}}</h1>
+                <p>
+                    <strong>Data:</strong> {{promise.date_promised|date:'Y-m-d'}}
+                </p>
+                <div id="promise-contents">
+                    {{promise.text|safe}}
+                </div>
+                {% if promise.source_promise_url %}
+                <p><a href="{{promise.source_promise_url}}">{{promise.source_promise_url}}</a></p>
+                {% endif %}
+            </div>
+            <div id="fulfillment">
+                <h2>Agindutakoa beteta?</h2>
+                {% if promise.fulfilled %}
+                    <strong>Data:</strong>{{promise.fulfillment_date}}
+                    <div id="fulfillment-text">
+                        {{promise.fulfillment_proof}}
+                    </div>
+                {% else %}
+                <span class="glyphicon glyphicon-remove" /> <strong>Daturik ez.</strong>
+                {% endif %}
+            </div>
+
             <div id="comments">
                 <h2>Eman zure iritzia agindutako honen inguruan</h2>
                 <div id="disqus_thread"></div>
@@ -32,23 +50,15 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h2>{{promise.party.name}}</h2>
+            <h2>
+                <a href="{% url 'party_view' promise.party.slug%}">
+                    {{promise.party.name}}
+                </a>
+            </h2>
             <img src="{{promise.party.logo.url}}" width="300" height="150"/>
             <h3>Hautagai-zerrenda</h3>
             {{promise.party.candidates|linebreaks}}
-            <hr />
-            {{promise.party.text|safe}}
 
         </div>
-    </div>
-    <div id="fulfillment">
-        <h2>Agindutakoa betetzea</h2>
-        {% if promise.fulfilled %}
-    {{promise.fulfillment_date}}
-        <br />
-        {{promise.fulfillment_proof}}
-{% else %}
-        <span class="glyphicon glyphicon-remove" />
-        {% endif %}
     </div>
     {% endblock %}

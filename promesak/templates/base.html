@@ -43,14 +43,12 @@
                         <div class="collapse navbar-collapse" id="main-navbar">
                           <ul class="nav navbar-nav first">
                             <li class="active"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Information"%} <b class="caret"></b></a>
-                                {% get_flatpages as flatpages %}
-                                <ul class="dropdown-menu">
-                                    {% for page in flatpages %}
-                                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                            {% get_flatpages as flatpages %}
+
+                            {% for page in flatpages %}
+                                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                            {% endfor %}
+
                             </li>
                           </ul>
                         </div><!-- /.navbar-collapse -->
@@ -59,12 +57,6 @@
                 <!--</div /.12 -->
             </div><!-- /.menu -->
             <div class="row" id="content">
-              <div class="row" id="breadcrumb">
-                  <div class="col-md-12">
-                      {% block breadcrumb %}
-                      {% endblock %}
-                  </div>
-              </div>
               <div class="row">
                 <div class="col-md-12">
                     {% block content %}
@@ -75,7 +67,7 @@
             <div id="footer" class="row">
               <div id="footercontent" class="container-fluid">
                 <div class="col-md-12">
-                    <a class="go-to-top" href="#top">{%trans "go to top"%} <span class="glyphicon glyphicon-chevron-up"></span></a>
+                    <a class="go-to-top pull-right" href="#top">{%trans "go to top"%} <span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
               </div>
             </div>
