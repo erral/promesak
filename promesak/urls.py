@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from promesak.base.views import index
 from django.conf import settings
-
+from django.contrib.flatpages import views as flatpagesviews
 
 urlpatterns = [
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.STATIC_ROOT}),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^info/', include('django.contrib.flatpages.urls')),
+    url(r'^(?P<url>.*/)$', flatpagesviews.flatpage),
     url(r'^', include('promesak.base.urls')),
     url(r'^$', index, name='index'),
 ]
