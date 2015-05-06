@@ -7,5 +7,5 @@ Tresna honekin alderdi bakoitzak agindutakoak zerrendatzen dira eta beren betetz
 
 Django_ n egindako proiektu bat da, 1.8 bertsioan hain zuzen ere. Instalazioa era erraz baten egin nahi baduzu, begiratu `promesak.buildout`_ proiektua eta jarraitu hango argibideak.
 
-.. _Django: http://django-project.org
+.. _Django: http://www.djangoproject.com
 .. _`promesak.buildout`: https://github.com/erral/promesak.buildout
