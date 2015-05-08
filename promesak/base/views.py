@@ -7,7 +7,7 @@ from promesak.base.models import Party
 def index(request):
     h = {}
     h['parties'] = Party.objects.all().order_by('?')
-    h['promises'] = Promise.objects.all().order_by('-date_promised')
+    h['promises'] = Promise.objects.all().order_by('?')
 
     return render(
         request,
